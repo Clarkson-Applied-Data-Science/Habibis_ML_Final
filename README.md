@@ -52,12 +52,9 @@ The following steps are needed :
 * Finding accuaracy for test data
 * Repeating the same process using PCA technique.
 
-**Note: We should consider that country names might be similar for different states. Therefore, the column on which  we merge should be the combination of county and state. However, for clusteing zipcode is used. **
+** Note: We should consider that country names might be similar for different states. Therefore, the column on which  we merge should be the combination of county and state. However, for clusteing zipcode is used. **
 
-At this step, our data sets needs to be merged, and essential columns for the study should be chosen.
-For this purpose, some formats need to be changed, and missing values should be addressed.
-
-At this step,the realstate dataset needs to be prepared and be divided into three clusters.
+At this step,the realstate dataset needs to be prepared and be divided into three clusters based on the average price per ft fot zipcodes.
 
 <a name="ld"></a>
 # 2.1.1  Datasets
