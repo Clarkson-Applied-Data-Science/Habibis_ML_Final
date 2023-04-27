@@ -248,6 +248,7 @@ plt.ylabel('Count')
 plt.legend()
 plt.show()
  ```
+![Cluster](https://user-images.githubusercontent.com/113566650/234928813-9c7064ff-c8e7-4ddb-830e-c527d6ceab3d.png)
 
 
 ## Adding the found clusters to the main real state data frame to see each rows represents which cluster.
