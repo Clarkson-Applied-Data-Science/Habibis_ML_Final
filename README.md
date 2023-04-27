@@ -20,6 +20,7 @@
 |5|   [ Machine Learning Model ](#ml)    |
 |5|   [ Training, validation and accuracy ](#tr)    |
 |7|   [ Accuracy of model for the test data ](#te)    |
+|7|   [ PCA](#pca)    |
 |8|  [ Conclusions ](#con)     |
 |9|  [ Limitations ](#le)     |
 
@@ -68,6 +69,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.model_selection import KFold
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import SVR
+from sklearn.metrics import r2_score
+from sklearn.model_selection import train_test_split
+
 ```
 
 
@@ -397,7 +406,8 @@ abs(correlation['price']).sort_values(ascending=False)
 
 
 
-
+<a name="tr"></a>
+# 5. Training, validation and accuracy:
 
 
 ```python
@@ -471,10 +481,20 @@ for cluster in range(1, n_clusters+1):
     print(f"   Validation Mean R2 Random Forest = {sum(r2_rf_list)/k:.3f}")
     #print(f"  Validation Mean R2 SVM = {sum(r2_svm_list)/k:.3f}")
 ```
+### Result:
+Cluster 1:
+   Validation Mean R2 Linear Regression = 0.546
+   Validation Mean R2 Random Forest = 0.982
+Cluster 2:
+   Validation Mean R2 Linear Regression = 0.671
+   Validation Mean R2 Random Forest = 0.981
+Cluster 3:
+   Validation Mean R2 Linear Regression = 0.890
+   Validation Mean R2 Random Forest = 0.983
 
 
-
-
+<a name="te"></a>
+# 5. Accuracy of model for the test data:
 
 ```python
 # Print the mean R2 for test set
@@ -483,7 +503,9 @@ print(f"Test Mean R2 Linear Regression = {sum(r2_linreg_test_list)/n_clusters:.3
 print(f"Test Mean R2 Random Forest = {sum(r2_rf_test_list)/n_clusters:.3f}")
 #print(f"Test Mean R2 SVM = {sum(r2_svm_test_list)/n_clusters:.3f}")
 ```
-
+### Result
+Test Mean R2 Linear Regression = 0.697
+Test Mean R2 Random Forest = 0.982
 
 
 
