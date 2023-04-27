@@ -8,14 +8,16 @@
 |  Number  |    Content  |
 |-----|-----|
 |1|  [ Description ](#desc)   |
-|2|   [ Method ](#meth)   |
-|2.1|    [ Data Gathering ](#dg)   |
-|2.1.1|    [ Real State Dataset ](#ld)   |
-|2.1.2|    [ Data preprocessing ](#dp)   |
-|2.1.3|    [ Adding new columns ](#anc)   |
+|2|   [ Summary](#meth)   |
+|3|    [ Data Gathering and Prepration ](#dg)   |
+|3.1|    [ Datasets ](#ld)   |
+|2.1.2|    [ Preparing the realstate data set ](#dp)   |
+|2.1.3|    [Clustering](#cl)   |
+|2.2|    [ Preparing and adding Other datasets ](#anc)   |
 |3|   [ Ultimate data frame](#ud)    |
 |4|   [ Correlation Cefficient Table ](#cc)    |
 |5|   [ Clustering ](#cc)    |
+|5|   [ Clustering-Visualization ](#cc)    |
 |6|   [ Train/Test Split ](#cc)    |
 |7|   [ Accuracy of model for the train data ](#cc)    |
 |8|   [ Accuracy of model for the test data ](#cc)    |
@@ -30,10 +32,10 @@
 In this study, we are interested in finding the best model to predict the house price using total land area, population density, house size, number of bedrooms and bathrooms in the different counties in the US. 
 
 <a name="meth"></a>
-# 2. Method
+# 2. Summary
 
 <a name="dg"></a>
-## 2.1. Data Gathering
+## 2.1. Data Gathering and Prepration
 
 Data on land area, population, real estate, and income were collected from different sources.
 The following steps are needed :
@@ -58,7 +60,7 @@ For this purpose, some formats need to be changed, and missing values should be 
 At this step,the realstate dataset needs to be prepared and be divided into three clusters.
 
 <a name="ld"></a>
-# 2.2 RealState Dataset
+# 2.1.1  Datasets
 
 **Libraries:**
 In This project different libraries are being used. All needed packages are loaded:
@@ -90,7 +92,7 @@ st_abr = pd.read_csv("state_abr.csv")
 
 <a name="dp"></a>
 
-# 2.3 Preprocessing the realstate data set
+# 2.1.2 Prepating the realstate data set
 This step contains the following content:
 * Addressing missing values and outliers
 * choosing important columns
@@ -203,8 +205,15 @@ realstate_grouped.rename(columns = {'state_abbr':'State'}, inplace = True)
 ![image](https://user-images.githubusercontent.com/113566650/206940525-025087a0-8969-4ae9-9c58-09135b58e7e7.png)
 
 
+<a name="cl"></a>
+# 2.1.3. Clustering
 
-## Clustering
+since there is a large variation in the price of houses located in differeny areas, we try to combine the locations with similar average price per area, to be able to fit a model tothose three different groups. 
+So:
+* Cluster 1 represents the zipcodes with low average price.
+* Cluster 2 represents the zipcodes with low average price.
+* Cluster 3 represents the zipcodes with low average price.
+
 ```python
 X = realstate_grouped[['price_per_sqft']].values
 
@@ -250,7 +259,14 @@ plt.show()
  ```
 
 
+## Adding the found clusters to the main real state data frame to see each rows represents which cluster.
 
+ ```python
+realstate_grouped=realstate_grouped.loc[:,['zip_code','Cluster']]
+realstate_clustered=real_state_data.merge(realstate_grouped, how='inner', on=['zip_code'])
+ ```
+<a name="anc"></a>
+# 2.2. Preparing and adding Other datasets
 
  ## Income Data Frame
  columns that are important for this study, from income data frame, are being chosen
@@ -261,8 +277,11 @@ income=income.dropna(axis=0)
 ```
  ### Merging real state and Income data:
 ```python 
-realstate_income=realstate_grouped.merge(income, how='inner', on=['State','County'])
+realstate_income=realstate_clustered.merge(income, how='inner', on=['State','County'])
 ```
+
+
+
 ## Land Data Frame
 Important columns from the land data are picked and columns names that are different from other data sets are chaneged:
 
@@ -328,117 +347,45 @@ realstate_income_land_population=realstate_income_land.merge(population, how='in
 ```
 * At this point all data frames that are needed are merged.
 
-<a name="anc"></a>
-## 2.3 Adding new columns
-Addingng new columns using the information that we have to obtain new information. The following columns are obtained:
 
-* Land_perCapita: Area of land/Total population of an area
-* Price_perft2: Average price of house/ average house size
 
+
+<a name="ot"></a>
+# 3. Outliers
+Using the following code, outliers which are more that three Z score above/below the mean, are removed.
 ```python 
-realstate_income_land_population['Land_perCapita']=realstate_income_land_population['ALAND']/realstate_income_land_population['TotalPop']
-realstate_income_land_population['Price_perft2']=realstate_income_land_population['price']/realstate_income_land_population['house_size']
+dfnn=realstate_income_land_population.copy()
+def remove_outliers_zscore(df_column):
+    z_scores = stats.zscore(df_column)
+    abs_z_scores = abs(z_scores)
+    filtered_entries = (abs_z_scores < 3)
+    return df_column[filtered_entries]
+
+realstate_income_land_population[['bed', 'bath','acre_lot','house_size','Price_perft2']] = realstate_income_land_population[['bed', 'bath','acre_lot','house_size','Price_perft2']].apply(remove_outliers_zscore)
+
+realstate_income_land_population=realstate_income_land_population.dropna()
 ```
-<a name="ud"></a>
-# 3. Ultimate data frame
-Here is the ultimate table that is used to investigate on correlation coeficient and to answer the questions that made us to do this study:
-```python 
-realstate_income_land_population
-```
-![image](https://user-images.githubusercontent.com/113566650/206943479-d51f51e3-0f80-483c-8c4f-2bc470b63cda.png)
 
 
 <a name="cc"></a>
 # 4. Correlation Cefficient Table
-Using the following code, the correlation coefficient between each two variables can be seen:
-```python
-my_correlation = realstate_income_land_population.corr()
-sns.heatmap(my_correlation,annot=True)
-```
-![output](https://user-images.githubusercontent.com/113566650/206943317-9fd76270-d7f7-4531-bad6-e3162c97a8e3.png)
 
-<a name="inter"></a>
-# 5. Interpretation and plots
+
+
  **Correlation coefficients measure the strength of the relationship between two variables.**
-## Correlation between House price and Income:
-
-The average home price has a moderate correlation with counties' average income per capita. (correlation coefficient: 0.5). It was the highest correlation coefficient in the table.
-
-Here is the code that for scatter plot that represent values for average house price and income per capita:
 ```python
-x1 = realstate_income_land_population['PerCapitaInc'].values
-y1 = realstate_income_land_population['price'].values
-plt.xlabel("Income per person")
-plt.ylabel("Average house price")
-plt.scatter(x1, y1)
-plt.show()
-```
-**Result**
-
-![output1](https://user-images.githubusercontent.com/113566650/207165502-fe7680e2-731e-4b03-a3ed-b9f98d936e08.png)
-
-## Correlation between House size and Land area:
-There is a very weak correlation between land size and house size for an area(with a correlation coefficient of -0.15). This correlation coefficient is negative, meaning that house size decreases to some extent by increasing land size.
-```python
-x2 = realstate_income_land_population['ALAND'].values
-y2 = realstate_income_land_population['house_size'].values
-plt.xlabel("State land area")
-plt.ylabel("House size")
-plt.scatter(x2, y2)
-plt.show()
-```
-**Result**
-
-![output2](https://user-images.githubusercontent.com/113566650/207168689-28ff6e8c-fc52-4187-92f1-af8dc7dc6104.png)
-
-
-## Correlation between House size and Income per capita:
-The correlation coefficient between house size and income is a weak to moderate(0.27).The following scatter plot represents the over all trend for the value of house size and Income per capita based on the data that we have.
-
-```python
-x3 = realstate_income_land_population['PerCapitaInc'].values
-y3 = realstate_income_land_population['house_size'].values
-plt.xlabel("Income per person")
-plt.ylabel("House size")
-plt.scatter(x3, y3)
-plt.show()
-```
-**Result**
-
-![output3](https://user-images.githubusercontent.com/113566650/207168928-2b82b54f-e5a8-4a69-8cf9-4dd344ecb4fd.png)
-
-
-## Correlation between Average house price and Population
-
-The price of a house per square feat has a moderate correlation with the population of that area(correlation coefficient: 0.4)
-
-```python
-x6 = realstate_income_land_population['TotalPop'].values
-y6 = realstate_income_land_population['Price_perft2'].values
-plt.xlabel("Total Population")
-plt.ylabel("Price per $ft^2$")
-plt.scatter(x6, y6)
-plt.show()
+correlation = realstate_income_land_population.drop(columns=['Cluster','Price_perft2']).corr()
+fig, ax = plt.subplots(figsize=(10, 10))
+sns.heatmap(correlation,annot=True)
 ```
 
-**Result**
 
-![image](https://user-images.githubusercontent.com/113566650/207193949-ffddfdfe-548f-43e8-a101-105019bacd12.png)
 
-## Correlation between Land area and Population
+Abstract of the corrolation metrix can be seen below:
 
-The correlation coefficient between total population and the land of counties ia a negative weak to moderate relationship.(corelation coeficient= -.024)
 ```python
-x4 = realstate_income_land_population['ALAND'].values
-y4 = realstate_income_land_population['TotalPop'].values
-plt.xlabel("State Land Area")
-plt.ylabel("Total population")
-plt.scatter(x4, y4)
-plt.show()
+abs(correlation['price']).sort_values(ascending=False)
 ```
-**Result**
-
-![output7](https://user-images.githubusercontent.com/113566650/207171433-7bb6a5dc-1ae0-43a7-aa13-e0a1b911dac8.png)
 
 <a name="con"></a>
 # 6. Conclusions:
