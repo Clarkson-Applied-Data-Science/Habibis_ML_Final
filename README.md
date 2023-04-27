@@ -569,9 +569,15 @@ In clusters 1 and 2, five principal components are selected, while in cluster 3,
 
 <a name="con"></a>
 # 6. Conclusions:
-In this study we were able to find correlations between land area, population density, income, house price, and house size in some of counties in the US. We started this task by gathering relevant data in different tables, and performed pre-processing and merging to achieve an ultimate table that contained all of the required data. By finding the correlation coefficient between the different variables and plotting them, we were able to infer the relationships. 
+In this project:
 
-The highest correlation was found between the house price and income per capita, following by the house price and population in that region. This indicates that normally house price is higher in more populated areas with wealthier people. In addition, a very slight correlation between the house size and income per capita was observed, which states that house price is more affected by income than house size. Surprisingly, house size and land area had the least correlation, denoting that houses are not necessarily larger in counties with more available lands.
+1. Clustering results in better predictions: By clustering the data into three distinct groups based on the zip codes of house location, we were able to build separate models for each cluster, which improved the accuracy of our predictions. This suggests that different locations may have different underlying relationships between their features and sale prices.
+
+2. Random forest is better than linear regression: Across all clusters, the random forest model consistently outperformed the linear regression model in terms of R2 score. This indicates that the random forest algorithm is better able to capture complex relationships between features and target variables, and can be a more effective tool for predicting sale prices.
+
+3. PCA does not result in improvement: We applied PCA to reduce the number of features and capture the most relevant information. However, the results showed that this did not lead to a significant improvement in model performance. This could be because the original feature set was already well-suited for prediction, or because the loss of information during the dimensionality reduction process outweighed the benefits.
+
+4. Overall, we can achieve very decent results of price prediction by using random forest: The average R2 score for the random forest model was fairly high, suggesting that the model is effective at predicting sale prices. 
 
 <a name="li"></a>
 # 6. Limitation:
