@@ -201,8 +201,8 @@ realstate_grouped.rename(columns = {'state_abbr':'State'}, inplace = True)
 since there is a large variation in the price of houses located in differeny areas, we try to combine the locations with similar average price per area, to be able to fit a model tothose three different groups. 
 So:
 * Cluster 1 represents the zipcodes with low average price.
-* Cluster 2 represents the zipcodes with low average price.
-* Cluster 3 represents the zipcodes with low average price.
+* Cluster 2 represents the zipcodes with medium average price.
+* Cluster 3 represents the zipcodes with high average price.
 
 ```python
 X = realstate_grouped[['price_per_sqft']].values
@@ -236,6 +236,7 @@ plt.ylabel('Average House Price (standardized)')
 plt.show()
 ```
 
+![clu](https://user-images.githubusercontent.com/113566650/234925983-b26e442f-d48e-417b-8992-48b8c1bc2f5e.png)
 
 
  ```python
