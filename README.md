@@ -178,13 +178,8 @@ real_state_bycounty=real_state_data.merge(geo_data, how='inner', on='zipcode')
 
 #### Doing group by to have information of real satate for each county:
 At this step, columns that are needed are being chosen from real state data frame, and the group by function is being applied to have each county name and the average of price and house for size for each of them:
-```python
-df1 = pd.DataFrame (real_state_bycounty , columns = ['county','state_abbr', 'price', 'house_size' ])
-realstate_grouped = df1.groupby(['state_abbr','county'],as_index=False).mean()
-realstate_grouped.rename(columns = {'state_abbr':'State'}, inplace = True)
-```
-#### Result:
-![image](https://user-images.githubusercontent.com/113566650/206940525-025087a0-8969-4ae9-9c58-09135b58e7e7.png)
+
+
 
 
 <a name="cl"></a>
@@ -196,7 +191,20 @@ So:
 * Cluster 2 represents the zipcodes with medium average price.
 * Cluster 3 represents the zipcodes with high average price.
 
+**Doing group by to have information of real satate for each zipcodes:**
 ```python
+df1 = pd.DataFrame (real_state_data , columns = ['zip_code', 'price', 'house_size' ])
+realstate_grouped = df1.groupby(['zip_code'],as_index=False).mean()
+realstate_grouped['price_per_sqft']=realstate_grouped['price']/realstate_grouped['house_size']
+
+ ```
+**Clustering the grouped data:**
+```python
+df1 = pd.DataFrame (real_state_data , columns = ['zip_code', 'price', 'house_size' ])
+realstate_grouped = df1.groupby(['zip_code'],as_index=False).mean()
+realstate_grouped['price_per_sqft']=realstate_grouped['price']/realstate_grouped['house_size']
+
+
 X = realstate_grouped[['price_per_sqft']].values
 
 scaler = StandardScaler()
