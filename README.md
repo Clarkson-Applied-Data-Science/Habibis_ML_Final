@@ -10,7 +10,7 @@
 |1|  [ Description ](#desc)   |
 |2|   [ Summary](#meth)   |
 |3|    [ Data Gathering and Prepration ](#dg)   |
-|3.1|    [ Datasets ](#ld)   |
+|3.1|    [ Importing Datasets ](#ld)   |
 |2.1.2|    [ Preparing the realstate data set ](#dp)   |
 |2.1.3|    [Clustering](#cl)   |
 |2.2|    [ Preparing and adding Other datasets ](#anc)   |
@@ -19,9 +19,7 @@
 |5|   [ Visualization ](#vs)    |
 |5|   [ Machine Learning Model ](#ml)    |
 |5|   [ Training, validation and accuracy ](#tr)    |
-
 |7|   [ Accuracy of model for the test data ](#te)    |
-
 |8|  [ Conclusions ](#con)     |
 |9|  [ Limitations ](#le)     |
 
