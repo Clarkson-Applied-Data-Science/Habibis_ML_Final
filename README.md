@@ -2,7 +2,7 @@
 
 ## Author: Sheida Habibi
 ## Title
-Price prediction in the United States of America
+ Price prediction in the United States of America
 
 ## Content table
 |  Number  |    Content  |
@@ -27,7 +27,7 @@ Price prediction in the United States of America
 
 <a name="desc"></a>
 # 1. Description
-In this study, we are interested in ginding a model to predict the house price using total land area, population density, house size, number of bedrooms and bathrooms in the different counties in the US. Specifically.
+In this study, we are interested in finding the best model to predict the house price using total land area, population density, house size, number of bedrooms and bathrooms in the different counties in the US. 
 
 <a name="meth"></a>
 # 2. Method
@@ -38,11 +38,12 @@ In this study, we are interested in ginding a model to predict the house price u
 Data on land area, population, real estate, and income were collected from different sources.
 The following steps are needed :
 * Preprocessing realstate dataset. 
-* Putting real states dataset into three Clustering based on the average price of each zipcodes.
-* Merging the realstate dataset, with out datasets about population, states' area and income data sets, on the column that they have in common.
+* Putting real states dataset into three Clustering based on the average price of the zipcodes.
+* Merging the realstate dataset, with out datasets about population, states' area and income, on the column that they have in common.
 * Selecting important columns and changing some formats.
 * Data preprocessing such as Cleaning data sets by removing/replacing the null values and adresing the outliers.
 * Finding corrolation between features
+* Feature selection
 * Normalazing the ddata
 * Spliting the data to Train/test and conducting machine learning models(both linear regression and random forest)
 * Finding accuaracy for train data and k-fold cross validation.
@@ -104,7 +105,6 @@ In this data frame price, state, number of bedrooms, number of bathrooms and hou
 
 ```python
 real_state_data=pd.DataFrame (real_state_data , columns =['price','zip_code', 'bed', 'bath', 'acre_lot','house_size'])
-real_state_data
 ```
 Using the following code all **missing values** are being dropped:
 ```python
@@ -184,7 +184,6 @@ real_state_data
 ![image](https://user-images.githubusercontent.com/113566650/207184761-4da0b4e7-edec-4cfe-b6b4-3c16f11c8f91.png)
 
 
-
 ## Merging real state and geo_data: 
 Berfore merging them the name of zip code column should be change in real state data frame to make it similar tp the one that we have in data fram. By doing this we will be able do merging by using pandas:
 
@@ -205,9 +204,50 @@ realstate_grouped.rename(columns = {'state_abbr':'State'}, inplace = True)
 
 
 
+## Clustering
+```python
+X = realstate_grouped[['price_per_sqft']].values
+
+scaler = StandardScaler()
+X_std = scaler.fit_transform(X)
+
+n_clusters=3
+kmeans = KMeans(n_clusters=n_clusters, random_state=10)
+
+kmeans.fit(X_std)
+
+labels = kmeans.predict(X_std)
+
+for n, i in enumerate(labels):
+    if i==0:
+        realstate_grouped.loc[n,'Cluster']=i+1
+    elif i==1:
+        realstate_grouped.loc[n,'Cluster']=i+2
+    elif i==2:
+        realstate_grouped.loc[n,'Cluster']=i
+        
+ ```
+ 
+## Clustering visualization
+
+ ```python
+ colors = ['red', 'green', 'blue']
+plt.scatter(realstate_grouped.index,X_std[:,0], c=labels)
+plt.ylabel('Average House Price (standardized)')
+plt.show()
+```
 
 
 
+ ```python
+plt.hist(X[labels==0], label='Cluster 1')
+plt.hist(X[labels==2], label='Cluster 2')
+plt.hist(X[labels==1],label='Cluster 3')
+plt.xlabel('Average House Price')
+plt.ylabel('Count')
+plt.legend()
+plt.show()
+ ```
 
 
 
