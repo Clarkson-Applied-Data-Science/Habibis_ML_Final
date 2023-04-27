@@ -11,10 +11,9 @@
 |2|   [ Summary](#meth)   |
 |3|    [ Data Gathering and Prepration ](#dg)   |
 |3.1|    [ Importing Datasets ](#ld)   |
-|2.1.2|    [ Preparing the realstate data set ](#dp)   |
-|2.1.3|    [Clustering](#cl)   |
-|2.2|    [ Preparing and adding Other datasets ](#anc)   |
-|3|   [ Ultimate data frame](#ud)    |
+|3.1.2|    [ Preparing the realstate data set ](#dp)   |
+|3.1.3|    [Clustering](#cl)   |
+|3.2|    [ Preparing and adding Other datasets ](#anc)   |
 |4|   [ Final DataFrame ](#fi)    |
 |5|   [ Outliers ](#ou)    |
 |6|   [ Correlation Cefficient Table ](#cc)    |
@@ -38,13 +37,13 @@ In this study, we are interested in finding the best model to predict the house 
 The work involves collecting data on land area, population, real estate, and income from various sources. The collected data is then preprocessed, with the real estate dataset being segmented into three clusters based on average zip code prices. The real estate dataset is merged with population, state area, and income data on the shared column, and important columns are selected and formatted. Data cleaning, outlier handling, feature correlation analysis, feature selection, and data normalization are performed. Machine learning models, including linear regression and random forest, are used on the train/test split data, with accuracy determined through k-fold cross-validation. The same process is repeated using the PCA technique.
 
 <a name="dg"></a>
-## 2.1. Data Gathering and Prepration
+# 3 Data Gathering and Prepration
 
  
 At this step,the realstate dataset needs to be prepared and be divided into three clusters based on the average price per ft fot zipcodes.
 
 <a name="ld"></a>
-# 2.1.1 Importing Datasets
+# 3.1.1 Importing Datasets
 
 **Libraries:**
 In This project different libraries are being used. All needed packages are loaded:
@@ -84,7 +83,7 @@ st_abr = pd.read_csv("state_abr.csv")
 
 <a name="dp"></a>
 
-# 2.1.2 Prepating the realstate data set
+# 3.1.2 Prepating the realstate data set
 This step contains the following content:
 * Addressing missing values and outliers
 * choosing important columns
@@ -185,7 +184,7 @@ At this step, columns that are needed are being chosen from real state data fram
 
 
 <a name="cl"></a>
-# 2.1.3. Clustering
+# 3.1.3. Clustering
 
 since there is a large variation in the price of houses located in differeny areas, we try to combine the locations with similar average price per area, to be able to fit a model tothose three different groups. 
 So:
@@ -260,7 +259,7 @@ realstate_grouped=realstate_grouped.loc[:,['zip_code','Cluster']]
 realstate_clustered=real_state_data.merge(realstate_grouped, how='inner', on=['zip_code'])
  ```
 <a name="anc"></a>
-# 2.2. Preparing and adding Other datasets
+# 3.2. Preparing and adding Other datasets
 
  ## Income Data Frame
  columns that are important for this study, from income data frame, are being chosen
@@ -335,7 +334,7 @@ realstate_income_land_population=realstate_income_land.merge(population, how='in
 * At this point all data frames that are needed are merged.
 
 <a name="df"></a>
-# 3. Final DataFrame:
+# 4. Final DataFrame:
 
 ```python
 Final_data=pd.DataFrame (realstate_income_land_population , columns =['price', 'bed', 'bath', 'acre_lot','house_size', 'Cluster', 'PerCapitaInc', 'ALAND', 'TotalPop'])
