@@ -16,14 +16,14 @@
 |2.2|    [ Preparing and adding Other datasets ](#anc)   |
 |3|   [ Ultimate data frame](#ud)    |
 |4|   [ Correlation Cefficient Table ](#cc)    |
-|5|   [ Clustering ](#cc)    |
-|5|   [ Clustering-Visualization ](#cc)    |
+|5|   [ Visualization ](#vs)    |
+
 |6|   [ Train/Test Split ](#cc)    |
-|7|   [ Accuracy of model for the train data ](#cc)    |
-|8|   [ Accuracy of model for the test data ](#cc)    |
-|9|  [ Interpretation and plots ](#inter)     |
-|10|  [ Conclusions ](#con)     |
-|7|  [ Limitations ](#con)     |
+
+|7|   [ Accuracy of model for the test data ](#cc)    |
+
+|8|  [ Conclusions ](#con)     |
+|9|  [ Limitations ](#con)     |
 
 
 
@@ -386,6 +386,113 @@ Abstract of the corrolation metrix can be seen below:
 ```python
 abs(correlation['price']).sort_values(ascending=False)
 ```
+
+
+<a name="vs"></a>
+# 5. Visualization:
+
+
+
+
+
+
+
+
+
+
+
+
+```python
+# number of folds
+k = 4
+
+kf = KFold(n_splits=k, shuffle=True, random_state=10)
+
+r2_linreg_test_list = []
+r2_rf_test_list = []
+#r2_svm_test_list = []
+
+for cluster in range(1, n_clusters+1):
+    X_cluster = Final_data[Final_data['Cluster'] == cluster].drop(['Cluster','price'], axis=1)
+    y_cluster = Final_data[Final_data['Cluster'] == cluster]['price']
+    
+    X_train_val, X_test, y_train_val, y_test = train_test_split(X_cluster, y_cluster, test_size=0.2, random_state=10)
+    
+    # Evaluation metrics
+    r2_linreg_list = []
+    r2_rf_list = []
+    #r2_svm_list = []
+    
+    # Loop through each fold
+    for train_idx, val_idx in kf.split(X_train_val):
+        
+        # Split the data into training and validation sets
+        X_train, X_val = X_train_val.iloc[train_idx], X_train_val.iloc[val_idx]
+        y_train, y_val = y_train_val.iloc[train_idx], y_train_val.iloc[val_idx]
+        
+        # Scale the features 
+        X_train_scaled = scaler.fit_transform(X_train)
+        X_val_scaled = scaler.transform(X_val)
+        
+        # Fit a linear regression model to the data
+        linreg_model = LinearRegression()
+        linreg_model.fit(X_train_scaled, y_train)
+        y_linreg_pred = linreg_model.predict(X_val_scaled)
+        
+        # Fit a random forest model to the data
+        rf_model = RandomForestRegressor(n_estimators=100, random_state=10)
+        rf_model.fit(X_train_scaled, y_train)
+        y_rf_pred = rf_model.predict(X_val_scaled)
+        
+        # Fit a SVM model to the data
+        #svm_model = SVR(kernel='linear')
+        #svm_model.fit(X_train_scaled, y_train)
+        #y_svm_pred = svm_model.predict(X_val_scaled)
+        
+        # Calculate R2 for each model and append to the respective list
+        r2_linreg_list.append(r2_score(y_val, y_linreg_pred))
+        r2_rf_list.append(r2_score(y_val, y_rf_pred))
+        #r2_svm_list.append(r2_score(y_val, y_svm_pred))
+    
+    #Prediction of the test set
+    X_test_scaled = scaler.transform(X_test)
+    
+    y_linreg_test_pred = linreg_model.predict(X_test_scaled)
+    r2_linreg_test_list.append(r2_score(y_test, y_linreg_test_pred))
+    
+    y_rf_test_pred = rf_model.predict(X_test_scaled)
+    r2_rf_test_list.append(r2_score(y_test, y_rf_test_pred))
+    
+    #y_svm_test_pred = svm_model.predict(X_test_scaled)
+    #r2_svm_test_list.append(r2_score(y_test, y_svm_test_pred))
+    
+    
+    # Print the mean R2 for validation set
+    print(f"Cluster {cluster}:")
+    print(f"   Validation Mean R2 Linear Regression = {sum(r2_linreg_list)/k:.3f}")
+    print(f"   Validation Mean R2 Random Forest = {sum(r2_rf_list)/k:.3f}")
+    #print(f"  Validation Mean R2 SVM = {sum(r2_svm_list)/k:.3f}")
+```
+
+
+
+
+
+```python
+# Print the mean R2 for test set
+print('\n')
+print(f"Test Mean R2 Linear Regression = {sum(r2_linreg_test_list)/n_clusters:.3f}")
+print(f"Test Mean R2 Random Forest = {sum(r2_rf_test_list)/n_clusters:.3f}")
+#print(f"Test Mean R2 SVM = {sum(r2_svm_test_list)/n_clusters:.3f}")
+```
+
+
+
+
+
+
+
+
 
 <a name="con"></a>
 # 6. Conclusions:
