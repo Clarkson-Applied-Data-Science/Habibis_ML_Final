@@ -360,24 +360,36 @@ realstate_income_land_population=realstate_income_land_population.dropna()
 
 <a name="cc"></a>
 # 4. Correlation Cefficient Table
-
-
-
- **Correlation coefficients measure the strength of the relationship between two variables.**
 ```python
 correlation = realstate_income_land_population.drop(columns=['Cluster','Price_perft2']).corr()
 fig, ax = plt.subplots(figsize=(10, 10))
 sns.heatmap(correlation,annot=True)
 ```
 
+![corr](https://user-images.githubusercontent.com/113566650/234926264-187ec839-8de8-45ff-81e7-b1a94ac20dd5.png)
+
+
+ **Correlation coefficients measure the strength of the relationship between two variables.**
 
 
 Abstract of the corrolation metrix can be seen below:
 
 ```python
 abs(correlation['price']).sort_values(ascending=False)
+
 ```
 
+# Result
+price           1.000000
+house_size      0.622279
+bath            0.615662
+bed             0.330089
+TotalPop        0.278107
+PerCapitaInc    0.258289
+ALAND           0.125132
+acre_lot        0.091766
+
+**Interpretation:**
 
 <a name="vs"></a>
 # 5. Visualization:
