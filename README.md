@@ -38,9 +38,8 @@ The work involves collecting data on land area, population, real estate, and inc
 
 <a name="dg"></a>
 # 3 Data Gathering and Prepration
+The data, about land area, population, real estate, and income, are used and prepared for the furthur analysi.
 
- 
-At this step,the realstate dataset needs to be prepared and be divided into three clusters based on the average price per ft fot zipcodes.
 
 <a name="ld"></a>
 # 3.1.1 Importing Datasets
@@ -84,7 +83,9 @@ st_abr = pd.read_csv("state_abr.csv")
 <a name="dp"></a>
 
 # 3.1.2 Prepating the realstate data set
-This step contains the following content:
+At this step,the realstate dataset needs to be prepared and be divided into three clusters based on the average price per ft fot zipcodes.
+
+**This step contains the following content:**
 * Addressing missing values and outliers
 * choosing important columns
 * Changing formats
