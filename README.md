@@ -23,7 +23,7 @@
 |7|   [ Accuracy of model for the test data ](#te)    |
 
 |8|  [ Conclusions ](#con)     |
-|9|  [ Limitations ](#con)     |
+|9|  [ Limitations ](#le)     |
 
 
 
