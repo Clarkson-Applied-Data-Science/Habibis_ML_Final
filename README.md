@@ -500,8 +500,16 @@ Test Mean R2 Random Forest = 0.982
 <a name="co"></a>
 # 5. Compare the result with and without PCA:
 
+PCA is added to the code above to select the most relevant features in each cluster. Specifically, the number of variables that account for 90% of the data variation within each cluster is selected. This allows us to reduce the dimensionality of the data while retaining most of the important information.
 
 
+
+
+
+
+
+**Interpretation:** 
+In clusters 1 and 2, five principal components are selected, while in cluster 3, four principal components are used. A slight decrease in R2 for both linear regression and random forest in all clusters is observed compared to the previous results without PCA. This suggests that the PCA approach may not be the most suitable feature selection method in this dataset.
 
 <a name="con"></a>
 # 6. Conclusions:
