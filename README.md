@@ -33,31 +33,16 @@ In this study, we are interested in finding the best model to predict the house 
 
 <a name="meth"></a>
 # 2. Summary
+The work involves collecting data on land area, population, real estate, and income from various sources. The collected data is then preprocessed, with the real estate dataset being segmented into three clusters based on average zip code prices. The real estate dataset is merged with population, state area, and income data on the shared column, and important columns are selected and formatted. Data cleaning, outlier handling, feature correlation analysis, feature selection, and data normalization are performed. Machine learning models, including linear regression and random forest, are used on the train/test split data, with accuracy determined through k-fold cross-validation. The same process is repeated using the PCA technique.
 
 <a name="dg"></a>
 ## 2.1. Data Gathering and Prepration
 
-Data on land area, population, real estate, and income were collected from different sources.
-The following steps are needed :
-* Preprocessing realstate dataset. 
-* Putting real states dataset into three Clustering based on the average price of the zipcodes.
-* Merging the realstate dataset, with out datasets about population, states' area and income, on the column that they have in common.
-* Selecting important columns and changing some formats.
-* Data preprocessing such as Cleaning data sets by removing/replacing the null values and adresing the outliers.
-* Finding corrolation between features
-* Feature selection
-* Normalazing the ddata
-* Spliting the data to Train/test and conducting machine learning models(both linear regression and random forest)
-* Finding accuaracy for train data and k-fold cross validation.
-* Finding accuaracy for test data
-* Repeating the same process using PCA technique.
-
-** Note: We should consider that country names might be similar for different states. Therefore, the column on which  we merge should be the combination of county and state. However, for clusteing zipcode is used. **
-
+ 
 At this step,the realstate dataset needs to be prepared and be divided into three clusters based on the average price per ft fot zipcodes.
 
 <a name="ld"></a>
-# 2.1.1  Datasets
+# 2.1.1 Importing Datasets
 
 **Libraries:**
 In This project different libraries are being used. All needed packages are loaded:
