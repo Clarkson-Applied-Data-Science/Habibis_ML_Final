@@ -20,7 +20,8 @@
 |5|   [ Machine Learning Model ](#ml)    |
 |5|   [ Training, validation and accuracy ](#tr)    |
 |7|   [ Accuracy of model for the test data ](#te)    |
-|7|   [ PCA](#pca)    |
+|7|   [Conducting model using PCA](#pca)    |
+|7|   [Compare the result with and without PCA](#c0)    |
 |8|  [ Conclusions ](#con)     |
 |9|  [ Limitations ](#le)     |
 
@@ -509,7 +510,8 @@ Test Mean R2 Random Forest = 0.982
 
 
 
-
+<a name="co"></a>
+# 5. Compare the result with and without PCA:
 
 
 
@@ -519,3 +521,8 @@ Test Mean R2 Random Forest = 0.982
 In this study we were able to find correlations between land area, population density, income, house price, and house size in some of counties in the US. We started this task by gathering relevant data in different tables, and performed pre-processing and merging to achieve an ultimate table that contained all of the required data. By finding the correlation coefficient between the different variables and plotting them, we were able to infer the relationships. 
 
 The highest correlation was found between the house price and income per capita, following by the house price and population in that region. This indicates that normally house price is higher in more populated areas with wealthier people. In addition, a very slight correlation between the house size and income per capita was observed, which states that house price is more affected by income than house size. Surprisingly, house size and land area had the least correlation, denoting that houses are not necessarily larger in counties with more available lands.
+
+<a name="li"></a>
+# 6. Limitation:
+
+
