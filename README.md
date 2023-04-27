@@ -394,6 +394,49 @@ acre_lot        0.091766
 <a name="vs"></a>
 # 5. Visualization:
 
+1
+```python
+ealstate_income_land_population['size_bin'] = pd.cut(realstate_income_land_population['house_size'], bins=10)
+grouped_data = realstate_income_land_population.groupby(['Cluster', 'size_bin'])['price'].mean().reset_index()
+pivot_data = grouped_data.pivot(index='size_bin', columns='Cluster', values='price')
+
+ax=pivot_data.plot(kind='bar')
+plt.xlabel('House Size Bins')
+plt.ylabel('Average Price')
+ax.legend(labels=['Cluster 1', 'Cluster 2', 'Cluster 3'])
+plt.show()
+```
+![1](https://user-images.githubusercontent.com/113566650/234927730-a648223c-84a7-4609-9817-65e187a17929.png)
+
+2
+```python
+grouped = realstate_income_land_population.groupby(['Cluster','bath']).mean().reset_index()
+fig, ax = plt.subplots()
+colors = ['red', 'green', 'blue']
+for i, c in enumerate([1, 2, 3]):
+    subset = grouped[grouped['Cluster'] == c]
+    ax.scatter(subset['bath'], subset['price'], color=colors[i], label=f'Cluster {c}')
+    plt.xlabel("Number of Baths")
+    plt.ylabel("Mean Price")
+ax.legend()
+plt.show()
+```
+![2](https://user-images.githubusercontent.com/113566650/234927787-89953c57-f7f3-46f3-b66a-845e510d8651.png)
+
+3
+```python
+grouped = realstate_income_land_population.groupby(['Cluster','bed']).mean().reset_index()
+fig, ax = plt.subplots()
+colors = ['red', 'green', 'blue']
+for i, c in enumerate([1, 2, 3]):
+    subset = grouped[grouped['Cluster'] == c]
+    ax.scatter(subset['bed'], subset['price'], color=colors[i], label=f'Cluster {c}')
+    plt.xlabel("Number of Bedrooms")
+    plt.ylabel("Mean Price")
+ax.legend()
+plt.show()
+```
+![3](https://user-images.githubusercontent.com/113566650/234927853-479f2ab4-8dba-4956-bfb7-75f00fe7e91a.png)
 
 
 
