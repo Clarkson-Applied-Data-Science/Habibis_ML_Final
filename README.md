@@ -15,15 +15,16 @@
 |2.1.3|    [Clustering](#cl)   |
 |2.2|    [ Preparing and adding Other datasets ](#anc)   |
 |3|   [ Ultimate data frame](#ud)    |
-|4|   [ Correlation Cefficient Table ](#cc)    |
-|5|   [ Visualization ](#vs)    |
-|6|   [ Machine Learning Model ](#ml)    |
-|7|   [ Training, validation and accuracy ](#tr)    |
-|8|   [ Accuracy of model for the test data ](#te)    |
-|9|   [Conducting model using PCA](#pca)    |
-|10|   [Compare the result with and without PCA](#c0)    |
-|11|  [ Conclusions ](#con)     |
-|12|  [ Limitations ](#le)     |
+|4|   [ Final DataFrame ](#fi)    |
+|5|   [ Correlation Cefficient Table ](#cc)    |
+|6|   [ Visualization ](#vs)    |
+|7|   [ Machine Learning Model ](#ml)    |
+|8|   [ Training, validation and accuracy ](#tr)    |
+|9|   [ Accuracy of model for the test data ](#te)    |
+|10|   [Conducting model using PCA](#pca)    |
+|11|   [Compare the result with and without PCA](#c0)    |
+|12|  [ Conclusions ](#con)     |
+|13|  [ Limitations ](#le)     |
 
 
 
@@ -281,11 +282,8 @@ Important columns from the land data are picked and columns names that are diffe
 df3 = pd.DataFrame (land , columns = ['USPS','NAME', 'ALAND' ])
 df3.rename(columns = {'USPS':'State'}, inplace = True)
 df3.rename(columns = {'NAME':'County'}, inplace = True)
-df3
 ```
-![image](https://user-images.githubusercontent.com/113566650/206941539-3f38903e-bef4-4989-892d-f3f892150e51.png)
-
-As it can be seen, **'county'** word is added after county names. However, in other data sets, we only have only county names. So using the following code we split by ' county' to remove the **'county'** word for all rows:
+**'county'** word is added after county names. However, in other data sets, we only have only county names. So using the following code we split by ' county' to remove the **'county'** word for all rows:
 
 ```python 
 i=0
@@ -295,7 +293,6 @@ for c in df3.County:
     i+=1
 df3
 ```
-![image](https://user-images.githubusercontent.com/113566650/207186690-82550846-1cf6-4fc6-b3b3-935578e19bf7.png)
 
 
  ### Merging real state and Income with land data:
@@ -303,7 +300,6 @@ df3
 ```python 
 realstate_income_land=realstate_income.merge(df3, how='inner', on=['State','County'])
 ``` 
-
 
 
 ## Population Data Frame
@@ -315,8 +311,6 @@ In the population data frame, state names are being written fully, however the a
 ```python 
 df4=df4.merge(st_abr, how='inner', on='State')
 ``` 
-![image](https://user-images.githubusercontent.com/113566650/207188617-205e1d0a-9272-4d12-bd01-b79198794010.png)
-
 Then we remove 'county' word after county name (the same as above):
 
 ```python 
@@ -339,7 +333,14 @@ realstate_income_land_population=realstate_income_land.merge(population, how='in
 ```
 * At this point all data frames that are needed are merged.
 
+<a name="df"></a>
+# 3. Final DataFrame:
 
+```python
+Final_data=pd.DataFrame (realstate_income_land_population , columns =['price', 'bed', 'bath', 'acre_lot','house_size', 'Cluster', 'PerCapitaInc', 'ALAND', 'TotalPop'])
+Final_data.head()
+```
+![image](https://user-images.githubusercontent.com/113566650/234932866-8c3efa87-788e-4c0d-a3ad-02bcdee772c5.png)
 
 
 <a name="ot"></a>
