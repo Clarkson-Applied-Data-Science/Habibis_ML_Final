@@ -17,10 +17,10 @@
 |3|   [ Ultimate data frame](#ud)    |
 |4|   [ Correlation Cefficient Table ](#cc)    |
 |5|   [ Visualization ](#vs)    |
+|5|   [ Machine Learning Model ](#ml)    |
+|5|   [ Training, validation and accuracy ](#tr)    |
 
-|6|   [ Train/Test Split ](#cc)    |
-
-|7|   [ Accuracy of model for the test data ](#cc)    |
+|7|   [ Accuracy of model for the test data ](#te)    |
 
 |8|  [ Conclusions ](#con)     |
 |9|  [ Limitations ](#con)     |
