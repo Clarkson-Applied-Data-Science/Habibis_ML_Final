@@ -391,7 +391,7 @@ abs(correlation['price']).sort_values(ascending=False)
 
 <a name="tr"></a>
 # 5. Training, validation and accuracy:
-
+Machine learning analysis is performed to evaluate the performance of two different regression models (Linear Regression and Random Forest) on the different clusters of a dataset. First, the dataset has been split into training-validation and testing sets. Then the training-validation dataset is split into four folds, and KFold cross-validation is used to evaluate the performance of the regression models on the training data. The KFold function is used to generate the indices for the training and validation sets, and then the data is split into the training and validation sets using these indices. The data are then scaled, and the models are then trained on the scaled training data, and the R2 score is calculated for the validation set for each fold. 
 
 ```python
 # number of folds
@@ -474,7 +474,12 @@ Cluster 2:
 Cluster 3:
    Validation Mean R2 Linear Regression = 0.890
    Validation Mean R2 Random Forest = 0.983
-
+   
+* Interpretation *
+The results show that the random forest model performs consistently well across all three clusters, with validation mean R2 values ranging from 0.981 to 0.983. The linear regression model performs relatively well for clusters 1 and 2, with validation mean R2 values of 0.546 and 0.671, respectively. However, for cluster 3, the linear regression model performs significantly better, with a validation mean R2 of 0.890. For the test set, the random forest model again performs consistently well, with a mean R2 of 0.982. The linear regression model also performs relatively well, with a mean R2 of 0.697.
+ 
+ * Note: As the data was fairly large, Svm technique was too time-consuming to run, it was excluded from the analysis as it and commented out in the code.  
+   
 
 <a name="te"></a>
 # 5. Accuracy of model for the test data:
