@@ -138,14 +138,6 @@ real_state_data['zip_code'] = real_state_data['zip_code'].astype(str)
 geo_data['zipcode']=geo_data['zipcode'].astype(str)
 ```
 
-Cheking the result of real state data frame:
-```python
-real_state_data
-```
-#### Result:
-![image](https://user-images.githubusercontent.com/113566650/206938786-62dfa2bb-da7a-4e24-8b20-4724940fd543.png)
-
-The resulting real-state data frame can be seen above.
 
 ## Converting **zip codes** to **county names**
 
