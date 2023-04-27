@@ -18,13 +18,11 @@
 |5|   [ Outliers ](#ou)    |
 |6|   [ Correlation Cefficient Table ](#cc)    |
 |7|   [ Visualization ](#vs)    |
-|8|   [ Machine Learning Model ](#ml)    |
-|9|   [ Training, validation and accuracy ](#tr)    |
-|10|   [ Accuracy of model for the test data ](#te)    |
-|11|   [Conducting model using PCA](#pca)    |
-|12|   [Compare the result with and without PCA](#c0)    |
-|13|  [ Conclusions ](#con)     |
-|14|  [ Limitations ](#le)     |
+|8|   [ Training, validation and accuracy ](#tr)    |
+|9|   [ Accuracy of model for the test data ](#te)    |
+|10|   [Conducting model using PCA](#pca)    |
+|11|  [ Conclusions ](#con)     |
+|12|  [ Limitations ](#li)     |
 
 
 
@@ -334,7 +332,7 @@ realstate_income_land_population=realstate_income_land.merge(population, how='in
 ```
 * At this point all data frames that are needed are merged.
 
-<a name="df"></a>
+<a name="dfi"></a>
 # 4. Final DataFrame:
 
 ```python
@@ -344,8 +342,8 @@ Final_data.head()
 ![image](https://user-images.githubusercontent.com/113566650/234932866-8c3efa87-788e-4c0d-a3ad-02bcdee772c5.png)
 
 
-<a name="ot"></a>
-# 4. Outliers
+<a name="ou"></a>
+# 5. Outliers
 Using the following code, outliers which are more that three Z score above/below the mean, are removed.
 ```python 
 dfnn=realstate_income_land_population.copy()
@@ -362,7 +360,7 @@ realstate_income_land_population=realstate_income_land_population.dropna()
 
 
 <a name="cc"></a>
-# 5. Correlation Cefficient Table
+# 6. Correlation Cefficient Table
 ```python
 correlation = realstate_income_land_population.drop(columns=['Cluster','Price_perft2']).corr()
 fig, ax = plt.subplots(figsize=(10, 10))
@@ -395,7 +393,7 @@ acre_lot        0.091766
 **Interpretation:**
 
 <a name="vs"></a>
-# 6. Visualization:
+# 7. Visualization:
 
 1
 ```python
@@ -444,12 +442,8 @@ plt.show()
 
 
 
-
-
-
-
 <a name="tr"></a>
-# 7. Training, validation and accuracy:
+# 8. Training, validation and accuracy:
 Machine learning analysis is performed to evaluate the performance of two different regression models (Linear Regression and Random Forest) on the different clusters of a dataset. First, the dataset has been split into training-validation and testing sets. Then the training-validation dataset is split into four folds, and KFold cross-validation is used to evaluate the performance of the regression models on the training data. The KFold function is used to generate the indices for the training and validation sets, and then the data is split into the training and validation sets using these indices. The data are then scaled, and the models are then trained on the scaled training data, and the R2 score is calculated for the validation set for each fold. 
 
 ```python
@@ -541,7 +535,7 @@ The results show that the random forest model performs consistently well across 
    
 
 <a name="te"></a>
-# 8. Accuracy of model for the test data:
+# 9. Accuracy of model for the test data:
 
 ```python
 # Print the mean R2 for test set
@@ -557,7 +551,7 @@ Test Mean R2 Random Forest = 0.982
 
 
 <a name="co"></a>
-# 9. Compare the result with and without PCA:
+# 10. Compare the result with and without PCA:
 
 PCA is added to the code above to select the most relevant features in each cluster. Specifically, the number of variables that account for 90% of the data variation within each cluster is selected. This allows us to reduce the dimensionality of the data while retaining most of the important information.
 
@@ -571,7 +565,7 @@ PCA is added to the code above to select the most relevant features in each clus
 In clusters 1 and 2, five principal components are selected, while in cluster 3, four principal components are used. A slight decrease in R2 for both linear regression and random forest in all clusters is observed compared to the previous results without PCA. This suggests that the PCA approach may not be the most suitable feature selection method in this dataset.
 
 <a name="con"></a>
-# 10. Conclusions:
+# 11. Conclusions:
 In this project:
 
 1. Clustering results in better predictions: By clustering the data into three distinct groups based on the zip codes of house location, we were able to build separate models for each cluster, which improved the accuracy of our predictions. This suggests that different locations may have different underlying relationships between their features and sale prices.
@@ -583,6 +577,6 @@ In this project:
 4. Overall, we can achieve very decent results of price prediction by using random forest: The average R2 score for the random forest model was fairly high, suggesting that the model is effective at predicting sale prices. 
 
 <a name="li"></a>
-# 11. Limitation:
+# 12. Limitation:
 
 
