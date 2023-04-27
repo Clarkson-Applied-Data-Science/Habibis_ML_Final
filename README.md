@@ -17,13 +17,13 @@
 |3|   [ Ultimate data frame](#ud)    |
 |4|   [ Correlation Cefficient Table ](#cc)    |
 |5|   [ Visualization ](#vs)    |
-|5|   [ Machine Learning Model ](#ml)    |
-|5|   [ Training, validation and accuracy ](#tr)    |
-|7|   [ Accuracy of model for the test data ](#te)    |
-|7|   [Conducting model using PCA](#pca)    |
-|7|   [Compare the result with and without PCA](#c0)    |
-|8|  [ Conclusions ](#con)     |
-|9|  [ Limitations ](#le)     |
+|6|   [ Machine Learning Model ](#ml)    |
+|7|   [ Training, validation and accuracy ](#tr)    |
+|8|   [ Accuracy of model for the test data ](#te)    |
+|9|   [Conducting model using PCA](#pca)    |
+|10|   [Compare the result with and without PCA](#c0)    |
+|11|  [ Conclusions ](#con)     |
+|12|  [ Limitations ](#le)     |
 
 
 
@@ -63,19 +63,19 @@ from sklearn.model_selection import train_test_split
 ```
 
 
-All data sets are read and converted to a data frame format from CSV files using **pandas**:
+**All data sets are read and converted to a data frame format from CSV files using **pandas**:**
 ```python
 real_state = pd.read_csv("realtordata.csv")
 income = pd.read_csv("Income.csv")
 population = pd.read_csv("population.csv")
 land = pd.read_csv("land.csv")
 ```
-The following data set is used to find the county for the real state data set using zipcodes:
+**The following data set is used to find the county for the real state data set using zipcodes:**
 ```python
 geo_data= pd.read_csv("geo-data.csv")
 ```
 
-The following CSV file is being used to convert complete State names to abbreviation type(state names should be unified):
+**The following CSV file is being used to convert complete State names to abbreviation type(state names should be unified):**
 ```python
 st_abr = pd.read_csv("state_abr.csv")
 ```
@@ -115,7 +115,7 @@ real_state_data.dtypes
 zip_code      float64
 
 
-Using the above code, it can be seen that zipcode in real state data frame is **float64**.
+* Using the above code, it can be seen that zipcode in real state data frame is **float64**.
 
 The type of data in geo_data should be checked:
 ```python
