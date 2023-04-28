@@ -676,21 +676,21 @@ print(f"Test Mean R2 Random Forest = {sum(r2_rf_test_list)/n_clusters:.3f}")
 #print(f"Test Mean R2 SVM = {sum(r2_svm_test_list)/n_clusters:.3f}")
 
 ```
-##Result:
+## Result:
 
-Cluster 1: 5 principal components explain 90% of the variance
+**Cluster 1: 5 principal components explain 90% of the variance**
 
    Validation Mean R2 Linear Regression = 0.497
    
    Validation Mean R2 Random Forest = 0.978
    
-Cluster 2: 5 principal components explain 90% of the variance
+**Cluster 2: 5 principal components explain 90% of the variance**
 
    Validation Mean R2 Linear Regression = 0.655
    
    Validation Mean R2 Random Forest = 0.979
    
-Cluster 3: 4 principal components explain 90% of the variance
+**Cluster 3: 4 principal components explain 90% of the variance**
 
    Validation Mean R2 Linear Regression = 0.875
    
