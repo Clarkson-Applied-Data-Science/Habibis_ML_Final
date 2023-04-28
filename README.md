@@ -378,9 +378,8 @@ sns.heatmap(correlation,annot=True)
 **Interpretation:** From the above figure, we can see that house price is highly corrolated to the number of bathroom and house size(with the corrolation coeficient of 0.62), and it does not have strong corrolation with other features. But we do not exculude other features because:
 
 1.In addition to linear regression , I want to conduct random forest and those features with low coeficient corrolation might have non linear relationship with house price, and random forest algorithem can capture it.
-2.
 
-
+2.The number of features is not too big and it does not make sense to exclude them.
 
 
 
