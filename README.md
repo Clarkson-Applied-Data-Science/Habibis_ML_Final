@@ -16,7 +16,7 @@
 |3.2|    [ Preparing and adding Other datasets ](#anc)   |
 |4|   [ Final DataFrame ](#fi)    |
 |5|   [ Outliers ](#ou)    |
-|6|   [ Correlation Cefficient Table ](#cc)    |
+|6|   [ Correlation Coefficient Matrix ](#cc)    |
 |7|   [ Visualization ](#vs)    |
 |8|   [ Training, validation and accuracy ](#tr)    |
 |9|   [ Accuracy of model for the test data ](#te)    |
@@ -365,7 +365,7 @@ realstate_income_land_population=realstate_income_land_population.dropna()
 
 
 <a name="cc"></a>
-# 6. Correlation Cefficient Table
+# 6. Correlation Coefficient Table
 ```python
 correlation = realstate_income_land_population.drop(columns=['Cluster','Price_perft2']).corr()
 fig, ax = plt.subplots(figsize=(10, 10))
@@ -550,7 +550,7 @@ for cluster in range(1, n_clusters+1):
 Test Mean R2 Random Forest = 0.982
 
    
-* Interpretation *
+**Interpretation**
 The results show that the random forest model performs consistently well across all three clusters, with validation mean R2 values ranging from 0.981 to 0.983. The linear regression model performs relatively well for clusters 1 and 2, with validation mean R2 values of 0.546 and 0.671, respectively. However, for cluster 3, the linear regression model performs significantly better, with a validation mean R2 of 0.890. For the test set, the random forest model again performs consistently well, with a mean R2 of 0.982. The linear regression model also performs relatively well, with a mean R2 of 0.697.
  
  * Note: As the data was fairly large, Svm technique was too time-consuming to run, it was excluded from the analysis as it and commented out in the code.  
