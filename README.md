@@ -185,7 +185,7 @@ At this step, columns that are needed are being chosen from real state data fram
 <a name="cl"></a>
 # 3.1.3. Clustering
 
-since there is a large variation in the price of houses located in differeny areas, we try to combine the locations with similar average price per area, to be able to fit a model tothose three different groups. 
+since there is a large variation in the price of houses located in different areas, we try to combine the locations with similar average price per area, to be able to fit a model to each three different groups seperatly to get a more accurate outcome. 
 So:
 * Cluster 1 represents the zipcodes with low average price.
 * Cluster 2 represents the zipcodes with medium average price.
@@ -528,6 +528,10 @@ Cluster 3:
    Validation Mean R2 Linear Regression = 0.890
    Validation Mean R2 Random Forest = 0.983
    
+**Mean R^2 for three clusters:**
+ Test Mean R2 Linear Regression = 0.697
+Test Mean R2 Random Forest = 0.982
+   
 * Interpretation *
 The results show that the random forest model performs consistently well across all three clusters, with validation mean R2 values ranging from 0.981 to 0.983. The linear regression model performs relatively well for clusters 1 and 2, with validation mean R2 values of 0.546 and 0.671, respectively. However, for cluster 3, the linear regression model performs significantly better, with a validation mean R2 of 0.890. For the test set, the random forest model again performs consistently well, with a mean R2 of 0.982. The linear regression model also performs relatively well, with a mean R2 of 0.697.
  
@@ -659,7 +663,21 @@ print(f"Test Mean R2 Random Forest = {sum(r2_rf_test_list)/n_clusters:.3f}")
 #print(f"Test Mean R2 SVM = {sum(r2_svm_test_list)/n_clusters:.3f}")
 
 ```
+##Result:
+Cluster 1: 5 principal components explain 90% of the variance
+   Validation Mean R2 Linear Regression = 0.497
+   Validation Mean R2 Random Forest = 0.978
+Cluster 2: 5 principal components explain 90% of the variance
+   Validation Mean R2 Linear Regression = 0.655
+   Validation Mean R2 Random Forest = 0.979
+Cluster 3: 4 principal components explain 90% of the variance
+   Validation Mean R2 Linear Regression = 0.875
+   Validation Mean R2 Random Forest = 0.956
 
+
+**Mean R^2 for three clusters:**
+Test Mean R2 Linear Regression = 0.671
+Test Mean R2 Random Forest = 0.949
 
 
 **Interpretation:** 
