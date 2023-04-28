@@ -185,8 +185,13 @@ At this step, columns that are needed are being chosen from real state data fram
 <a name="cl"></a>
 # 3.1.3. Clustering
 
-since there is a large variation in the price of houses located in different areas, we try to combine the locations with similar average price per area, to be able to fit a model to each three different groups seperatly to get a more accurate outcome. 
-So:
+The location of a house is a crucial factor that influences its price. For instance, different cities have a specific price range per square foot, and the cost of a house can vary depending on the location within the city. However, since zipcode (which represent the location) is a categorical variable with many different values , analyzing it poses a challenge. Using one hot encoding on zip codes would be time-consuming and not practical. Therefore, in this project, I grouped the data into three clusters based on zip code. Subsequently, a machine learning algorithm will be trained for each cluster based on other factors to predict the house price.
+
+
+
+To cluster zip codes effectively, we need to calculate the average house price per square foot for each zip code. Based on these values, we can then group each zip code into one of three clusters. 
+ 
+So each zipcodes needs to be in:
 * Cluster 1 represents the zipcodes with low average price.
 * Cluster 2 represents the zipcodes with medium average price.
 * Cluster 3 represents the zipcodes with high average price.
