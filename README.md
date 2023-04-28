@@ -256,6 +256,7 @@ plt.show()
 ![Cluster](https://user-images.githubusercontent.com/113566650/234928813-9c7064ff-c8e7-4ddb-830e-c527d6ceab3d.png)
 
 
+
 ## Adding the found clusters to the main real state data frame to see each rows represents which cluster.
 
  ```python
@@ -400,7 +401,8 @@ acre_lot        0.091766
 <a name="vs"></a>
 # 7. Visualization:
 
-1
+Housesize and price:
+
 ```python
 ealstate_income_land_population['size_bin'] = pd.cut(realstate_income_land_population['house_size'], bins=10)
 grouped_data = realstate_income_land_population.groupby(['Cluster', 'size_bin'])['price'].mean().reset_index()
@@ -414,7 +416,8 @@ plt.show()
 ```
 ![1](https://user-images.githubusercontent.com/113566650/234927730-a648223c-84a7-4609-9817-65e187a17929.png)
 
-2
+Number of bathroom and price: 
+
 ```python
 grouped = realstate_income_land_population.groupby(['Cluster','bath']).mean().reset_index()
 fig, ax = plt.subplots()
@@ -429,7 +432,8 @@ plt.show()
 ```
 ![2](https://user-images.githubusercontent.com/113566650/234927787-89953c57-f7f3-46f3-b66a-845e510d8651.png)
 
-3
+Number of bedroom and price: 
+
 ```python
 grouped = realstate_income_land_population.groupby(['Cluster','bed']).mean().reset_index()
 fig, ax = plt.subplots()
@@ -445,6 +449,7 @@ plt.show()
 ![3](https://user-images.githubusercontent.com/113566650/234927853-479f2ab4-8dba-4956-bfb7-75f00fe7e91a.png)
 
 
+**Interpretation:** Observing the above plots, we can see that the relationship between the number of bedrooms and house price is linear for each cluster, but with different slopes. This outcome shows that the clustering method we utilized is effective.
 
 
 <a name="tr"></a>
