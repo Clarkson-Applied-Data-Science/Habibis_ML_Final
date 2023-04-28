@@ -20,7 +20,7 @@
 |7|   [ Visualization ](#vs)    |
 |8|   [ Training, validation and accuracy ](#tr)    |
 |9|   [ Accuracy of model for the test data ](#te)    |
-|10|   [Conducting model using PCA](#pca)    |
+|10|   [Conducting model using PCA](#pc)    |
 |11|  [ Conclusions ](#con)     |
 |12|  [ Limitations ](#li)     |
 
@@ -518,19 +518,32 @@ for cluster in range(1, n_clusters+1):
     #print(f"  Validation Mean R2 SVM = {sum(r2_svm_list)/k:.3f}")
 ```
 ### Result:
+
 Cluster 1:
+
    Validation Mean R2 Linear Regression = 0.546
+   
    Validation Mean R2 Random Forest = 0.982
+   
 Cluster 2:
+
    Validation Mean R2 Linear Regression = 0.671
+   
    Validation Mean R2 Random Forest = 0.981
+   
 Cluster 3:
+
    Validation Mean R2 Linear Regression = 0.890
+   
    Validation Mean R2 Random Forest = 0.983
    
+   
 **Mean R^2 for three clusters:**
+
  Test Mean R2 Linear Regression = 0.697
+ 
 Test Mean R2 Random Forest = 0.982
+
    
 * Interpretation *
 The results show that the random forest model performs consistently well across all three clusters, with validation mean R2 values ranging from 0.981 to 0.983. The linear regression model performs relatively well for clusters 1 and 2, with validation mean R2 values of 0.546 and 0.671, respectively. However, for cluster 3, the linear regression model performs significantly better, with a validation mean R2 of 0.890. For the test set, the random forest model again performs consistently well, with a mean R2 of 0.982. The linear regression model also performs relatively well, with a mean R2 of 0.697.
@@ -554,8 +567,8 @@ Test Mean R2 Random Forest = 0.982
 
 
 
-<a name="co"></a>
-# 10. PCA:
+<a name="pc"></a>
+# 10. Conducting model using PCA:
 
 PCA is added to the code above to select the most relevant features in each cluster. Specifically, the number of variables that account for 90% of the data variation within each cluster is selected. This allows us to reduce the dimensionality of the data while retaining most of the important information.
 
@@ -664,19 +677,31 @@ print(f"Test Mean R2 Random Forest = {sum(r2_rf_test_list)/n_clusters:.3f}")
 
 ```
 ##Result:
+
 Cluster 1: 5 principal components explain 90% of the variance
+
    Validation Mean R2 Linear Regression = 0.497
+   
    Validation Mean R2 Random Forest = 0.978
+   
 Cluster 2: 5 principal components explain 90% of the variance
+
    Validation Mean R2 Linear Regression = 0.655
+   
    Validation Mean R2 Random Forest = 0.979
+   
 Cluster 3: 4 principal components explain 90% of the variance
+
    Validation Mean R2 Linear Regression = 0.875
+   
    Validation Mean R2 Random Forest = 0.956
+   
 
 
 **Mean R^2 for three clusters:**
+
 Test Mean R2 Linear Regression = 0.671
+
 Test Mean R2 Random Forest = 0.949
 
 
