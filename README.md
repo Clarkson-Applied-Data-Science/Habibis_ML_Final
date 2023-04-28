@@ -384,18 +384,16 @@ sns.heatmap(correlation,annot=True)
 2.The number of features is not too big and it does not make sense to exclude them.
 
 
+ **Correlation coefficients measure the strength of the linear relationship between two variables.**
 
- **Correlation coefficients measure the strength of the relationship between two variables.**
-
-
-Abstract of the corrolation metrix can be seen below:
+### Abstract of the corrolation metrix can be seen below:
 
 ```python
 abs(correlation['price']).sort_values(ascending=False)
 
 ```
 
-# Result
+#### Result
 
 price           1.000000
 
