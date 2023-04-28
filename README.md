@@ -2,7 +2,7 @@
 
 ## Author: Sheida Habibi
 ## Title
- Price prediction in the United States of America
+ House price prediction in the United States of America.
 
 ## Content table
 |  Number  |    Content  |
