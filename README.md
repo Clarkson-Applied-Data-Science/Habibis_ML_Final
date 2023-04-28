@@ -676,7 +676,7 @@ print(f"Test Mean R2 Random Forest = {sum(r2_rf_test_list)/n_clusters:.3f}")
 #print(f"Test Mean R2 SVM = {sum(r2_svm_test_list)/n_clusters:.3f}")
 
 ```
-## Result:
+### Result:
 
 **Cluster 1: 5 principal components explain 90% of the variance**
 
