@@ -36,7 +36,7 @@ The work involves collecting data on land area, population, real estate, and inc
 
 <a name="dg"></a>
 # 3 Data Gathering and Prepration
-The data, about land area, population, real estate, and income, are used and prepared for the furthur analysi.
+The data, about land area, population, real estate, and income, are used and prepared for the furthur analysis.
 
 
 <a name="ld"></a>
@@ -449,7 +449,21 @@ plt.show()
 
 <a name="tr"></a>
 # 8. Training, validation and accuracy:
-Machine learning analysis is performed to evaluate the performance of two different regression models (Linear Regression and Random Forest) on the different clusters of a dataset. First, the dataset has been split into training-validation and testing sets. Then the training-validation dataset is split into four folds, and KFold cross-validation is used to evaluate the performance of the regression models on the training data. The KFold function is used to generate the indices for the training and validation sets, and then the data is split into the training and validation sets using these indices. The data are then scaled, and the models are then trained on the scaled training data, and the R2 score is calculated for the validation set for each fold. 
+Machine learning analysis is performed to evaluate the performance of two different regression models (Linear Regression and Random Forest) on the different clusters of a dataset. First, the dataset has been split into training-validation and testing sets(80% train and 20% test). Then the training-validation dataset is split into four folds, and KFold cross-validation is used to evaluate the performance of the regression models on the training data. The KFold function is used to generate the indices for the training and validation sets, and then the data is split into the training and validation sets using these indices. The data are then scaled, and the models are then trained on the scaled training data, and the R2 score is calculated for the validation set for each fold. 
+
+**Here the following steps are taken for each clusters:**
+
+* Splitting dataset
+
+* 4-fold cross validation
+
+* Data Scaling
+
+* fitting random forest and linear regression models
+
+* Finding accuracy
+
+
 
 ```python
 # number of folds
@@ -570,7 +584,9 @@ print(f"Test Mean R2 Random Forest = {sum(r2_rf_test_list)/n_clusters:.3f}")
 Test Mean R2 Linear Regression = 0.697
 Test Mean R2 Random Forest = 0.982
 
-
+ Here the accuracy of the test set is calculated and as can be seen it is fairly high number.
+ 
+**Interpretation:** Since accuracy for both train and test data set high and at the same range, we can mae sure that overfitting ha not occured.
 
 <a name="pc"></a>
 # 10. Conducting model using PCA:
