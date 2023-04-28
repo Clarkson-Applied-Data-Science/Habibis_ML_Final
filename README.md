@@ -519,26 +519,26 @@ for cluster in range(1, n_clusters+1):
 ```
 ### Result:
 
-Cluster 1:
+**Cluster 1:**
 
    Validation Mean R2 Linear Regression = 0.546
    
    Validation Mean R2 Random Forest = 0.982
    
-Cluster 2:
+**Cluster 2:**
 
    Validation Mean R2 Linear Regression = 0.671
    
    Validation Mean R2 Random Forest = 0.981
    
-Cluster 3:
+**Cluster 3:**
 
    Validation Mean R2 Linear Regression = 0.890
    
    Validation Mean R2 Random Forest = 0.983
    
    
-**Mean R^2 for three clusters:**
+**Mean R^2 for three clusters: **
 
  Test Mean R2 Linear Regression = 0.697
  
