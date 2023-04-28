@@ -772,7 +772,7 @@ In this project:
 
 <a name="li"></a>
 
-# 12. Limitation:
+# 12. Limitations:
 
 While this study provides valuable insights into predicting house prices using machine learning models, it has some limitations. One of the main limitations is the absence of certain crucial features, such as the year of build, distance to city center, and nearby amenities like shopping centers, which could impact the accuracy of the predictive models. Additionally, we only have data from a limited number of cities and states in the US, which may not be representative of the entire population of houses in the US and could limit the generalizability of the results. Another limitation of this study is that the dataset only includes information on houses sold within a specific time frame, which may not represent the current housing market. Finally, while our models achieved decent predictive performance, this study only focuses on using two specific machine learning algorithms (linear regression and random forest) and does not explore other possible algorithms that may produce better results.
 
