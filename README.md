@@ -375,6 +375,14 @@ sns.heatmap(correlation,annot=True)
 
 ![corr](https://user-images.githubusercontent.com/113566650/234926264-187ec839-8de8-45ff-81e7-b1a94ac20dd5.png)
 
+**Interpretation:** From the above figure, we can see that house price is highly corrolated to the number of bathroom and house size(with the corrolation coeficient of 0.62), and it does not have strong corrolation with other features. But we do not exculude other features because:
+
+1.In addition to linear regression , I want to conduct random forest and those features with low coeficient corrolation might have non linear relationship with house price, and random forest algorithem can capture it.
+2.
+
+
+
+
 
  **Correlation coefficients measure the strength of the relationship between two variables.**
 
@@ -746,9 +754,17 @@ In this project:
 
 4. Overall, we can achieve very decent results of price prediction by using random forest: The average R2 score for the random forest model was fairly high, suggesting that the model is effective at predicting sale prices. 
 
+**Why random forest worked better?**
+
+1.Random Forest model is an ensemble model that aggregates multiple decision trees, which can capture non-linear relationships between the input features and the target variable. In contrast, Linear Regression assumes a linear relationship between the input features and the target variable, which may not be correct in reality.(in this project some of the variable were not linearly corrolated to house price and they could not be excluded since we did not have too many features.)
+
+2. Random Forest model can effectively capture interactions and dependencies between the input features, which may be missed by a Linear Regression model that considers only individual features.
+
+
 <a name="li"></a>
 
 # 12. Limitation:
 
 While this study provides valuable insights into predicting house prices using machine learning models, it has some limitations. One of the main limitations is the absence of certain crucial features, such as the year of build, distance to city center, and nearby amenities like shopping centers, which could impact the accuracy of the predictive models. Additionally, we only have data from a limited number of cities and states in the US, which may not be representative of the entire population of houses in the US and could limit the generalizability of the results. Another limitation of this study is that the dataset only includes information on houses sold within a specific time frame, which may not represent the current housing market. Finally, while our models achieved decent predictive performance, this study only focuses on using two specific machine learning algorithms (linear regression and random forest) and does not explore other possible algorithms that may produce better results.
+
 
