@@ -80,7 +80,7 @@ st_abr = pd.read_csv("state_abr.csv")
 
 <a name="dp"></a>
 
-# 3.1.2 Prepating the realstate data set
+# 3.1.2 Preparing the realstate data set
 At this step,the realstate dataset needs to be prepared and be divided into three clusters based on the average price per ft fot zipcodes.
 
 **This step contains the following content:**
@@ -350,7 +350,9 @@ Final_data.head()
 
 <a name="ou"></a>
 # 5. Outliers
+
 Using the following code, outliers which are more that three Z score above/below the mean, are removed.
+
 ```python 
 dfnn=realstate_income_land_population.copy()
 def remove_outliers_zscore(df_column):
@@ -394,14 +396,24 @@ abs(correlation['price']).sort_values(ascending=False)
 ```
 
 # Result
+
 price           1.000000
+
 house_size      0.622279
+
 bath            0.615662
+
 bed             0.330089
+
 TotalPop        0.278107
+
 PerCapitaInc    0.258289
+
 ALAND           0.125132
+
 acre_lot        0.091766
+
+
 
 **Interpretation:**
 
@@ -569,7 +581,7 @@ for cluster in range(1, n_clusters+1):
    Validation Mean R2 Random Forest = 0.983
    
    
-**Mean R^2 for three clusters: **
+**Mean R^2 for three clusters:**
 
  Test Mean R2 Linear Regression = 0.697
  
@@ -757,7 +769,7 @@ In this project:
 
 1.Random Forest model is an ensemble model that aggregates multiple decision trees, which can capture non-linear relationships between the input features and the target variable. In contrast, Linear Regression assumes a linear relationship between the input features and the target variable, which may not be correct in reality.(in this project some of the variable were not linearly corrolated to house price and they could not be excluded since we did not have too many features.)
 
-2. Random Forest model can effectively capture interactions and dependencies between the input features, which may be missed by a Linear Regression model that considers only individual features.
+2.Random Forest model can effectively capture interactions and dependencies between the input features, which may be missed by a Linear Regression model that considers only individual features.
 
 
 <a name="li"></a>
